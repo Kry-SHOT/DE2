@@ -9,9 +9,9 @@ This readme also serves as a place to try different styles and syntax patterns a
 
 1. lists
 2. headers
-  1. # Header 1
-  2. ## Header 2
-  3. ### Header 3
+   1. Header 1
+   2. Header 2
+   3. Header 3
 3. links
 4. **_emphasis_**
 also:
