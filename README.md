@@ -14,6 +14,7 @@ This readme also serves as a place to try different styles and syntax patterns a
    3. Header 3
 3. links
 4. **_emphasis_**
+
 also:
   - images
   - gifs
