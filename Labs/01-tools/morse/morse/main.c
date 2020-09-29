@@ -45,8 +45,9 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        PORTB = PORTB ^ (1<<LED_GREEN);
-        _delay_ms(DASH);
+        	//the given code is DE2 on repeat: -.././..---//
+	    	PORTB = PORTB ^ (1<<LED_GREEN);
+        	_delay_ms(DASH);
 		
 		PORTB = PORTB ^ (1<<LED_GREEN);
 		_delay_ms(SHORT_PAUSE);
