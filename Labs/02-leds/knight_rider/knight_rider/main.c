@@ -13,7 +13,6 @@
 #define LED_5	PC4
 #define BUTTON		PD0
 #define BLINK_DELAY 250
-#define BLINK_DELAY_SMALL 50
 #ifndef F_CPU
 #define F_CPU 16000000      // CPU frequency in Hz required for delay
 #endif
@@ -32,42 +31,47 @@ int main(void)
 	//setup LEDs
 	
 	DDRC = DDRC | (1<<LED_1);
-	PORTC = PORTC | (1<<LED_1); //active when set to 0
+	PORTC = PORTC & ~(1<<LED_1); //active when set to 0
 	DDRC = DDRC | (1<<LED_2);
-	PORTC = PORTC | (1<<LED_2); //active when set to 0
+	PORTC = PORTC & ~(1<<LED_2); //active when set to 0
 	DDRC = DDRC | (1<<LED_3);
-	PORTC = PORTC | (1<<LED_3); //active when set to 0
+	PORTC = PORTC & ~(1<<LED_3); //active when set to 0
 	DDRC = DDRC | (1<<LED_4);
-	PORTC = PORTC | (1<<LED_4); //active when set to 0
+	PORTC = PORTC & ~(1<<LED_4); //active when set to 0
 	DDRC = DDRC | (1<<LED_5);
-	PORTC = PORTC | (1<<LED_5); //active when set to 0
+	PORTC = PORTC & ~(1<<LED_5); //active when set to 0
 	
 	DDRD = DDRD & ~(1<<BUTTON); //set input
 	PORTD = PORTD | (1<<BUTTON);//enable internal pull-up
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
-
-        // WRITE YOUR CODE HERE
-		if(bit_is_set(PIND, BUTTON))
+		if(bit_is_clear(PIND, BUTTON))
 		{
 		PORTC = PORTC ^ (1<<LED_1);
-		_delay_ms(BLINK_DELAY_SMALL);
+		_delay_ms(BLINK_DELAY);
 		PORTC = PORTC ^ (1<<LED_1);
 		PORTC = PORTC ^ (1<<LED_2);
-		_delay_ms(BLINK_DELAY_SMALL);
+		_delay_ms(BLINK_DELAY);
 		PORTC = PORTC ^ (1<<LED_2);
 		PORTC = PORTC ^ (1<<LED_3);
-		_delay_ms(BLINK_DELAY_SMALL);
+		_delay_ms(BLINK_DELAY);
 		PORTC = PORTC ^ (1<<LED_3);
 		PORTC = PORTC ^ (1<<LED_4);
-		_delay_ms(BLINK_DELAY_SMALL);
+		_delay_ms(BLINK_DELAY);
 		PORTC = PORTC ^ (1<<LED_4);
 		PORTC = PORTC ^ (1<<LED_5);
-		_delay_ms(BLINK_DELAY_SMALL);
-		PORTC = PORTC ^ (1<<LED_5);				
+		_delay_ms(BLINK_DELAY);
+		PORTC = PORTC ^ (1<<LED_5);
+		PORTC = PORTC ^ (1<<LED_4);
+		_delay_ms(BLINK_DELAY);
+		PORTC = PORTC ^ (1<<LED_4);
+		PORTC = PORTC ^ (1<<LED_3);
+		_delay_ms(BLINK_DELAY);
+		PORTC = PORTC ^ (1<<LED_3);
+		PORTC = PORTC ^ (1<<LED_2);
+		_delay_ms(BLINK_DELAY);
+		PORTC = PORTC ^ (1<<LED_2);				
 		}
     }
 

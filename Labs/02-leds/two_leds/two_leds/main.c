@@ -3,17 +3,17 @@
  *
  * Created: 30.09.2020 9:24:56
  * Author : krystof
- */ 
+ */
 
 /***********************************************************************
- * 
+ *
  * Alternately toggle two LEDs when a push button is pressed.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2018-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
- * 
+ *
  **********************************************************************/
 
 /* Defines -----------------------------------------------------------*/
@@ -31,19 +31,19 @@
 
 /* Functions ---------------------------------------------------------*/
 /**
- * Main function where the program execution begins. Toggle two LEDs 
+ * Main function where the program execution begins. Toggle two LEDs
  * when a push button is pressed.
  */
 int main(void)
 {
-    /* GREEN LED */
-    // Set pin as output in Data Direction Register...
-    DDRB = DDRB | (1<<LED_GREEN);
-    // ...and turn LED off in Data Register
-    PORTB = PORTB & ~(1<<LED_GREEN); //active when set to 1
+	/* GREEN LED */
+	// Set pin as output in Data Direction Register...
+	DDRB = DDRB | (1<<LED_GREEN);
+	// ...and turn LED off in Data Register
+	PORTB = PORTB & ~(1<<LED_GREEN); //active when set to 1
 
-    /* second LED */
-    // WRITE YOUR CODE HERE
+	/* second LED */
+	// WRITE YOUR CODE HERE
 	
 	DDRC = DDRC | (1<<LED_GREEN_1);
 	
@@ -51,19 +51,19 @@ int main(void)
 	
 	DDRD = DDRD & ~(1<<BUTTON); //set input
 	PORTD = PORTD | (1<<BUTTON);//enable internal pull-up
-    // Infinite loop
-    while (1)
-    {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
+	// Infinite loop
+	while (1)
+	{
+		// Pause several milliseconds
+		_delay_ms(BLINK_DELAY);
 
-        // WRITE YOUR CODE HERE
+		// WRITE YOUR CODE HERE
 		if(bit_is_set(PIND, BUTTON))
 		{
-		PORTB = PORTB ^ (1<<LED_GREEN);
-		PORTC = PORTC ^ (1<<LED_GREEN_1);
+			PORTB = PORTB ^ (1<<LED_GREEN);
+			PORTC = PORTC ^ (1<<LED_GREEN_1);
 		}
-    }
+	}
 
     // Will never reach this
     return 0;

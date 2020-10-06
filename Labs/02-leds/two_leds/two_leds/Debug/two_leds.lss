@@ -75,16 +75,16 @@ Disassembly of section .text:
  */
 int main(void)
 {
-    /* GREEN LED */
-    // Set pin as output in Data Direction Register...
-    DDRB = DDRB | (1<<LED_GREEN);
+	/* GREEN LED */
+	// Set pin as output in Data Direction Register...
+	DDRB = DDRB | (1<<LED_GREEN);
   80:	25 9a       	sbi	0x04, 5	; 4
-    // ...and turn LED off in Data Register
-    PORTB = PORTB & ~(1<<LED_GREEN); //active when set to 1
+	// ...and turn LED off in Data Register
+	PORTB = PORTB & ~(1<<LED_GREEN); //active when set to 1
   82:	2d 98       	cbi	0x05, 5	; 5
 
-    /* second LED */
-    // WRITE YOUR CODE HERE
+	/* second LED */
+	// WRITE YOUR CODE HERE
 	
 	DDRC = DDRC | (1<<LED_GREEN_1);
   84:	3d 9a       	sbi	0x07, 5	; 7
@@ -96,12 +96,12 @@ int main(void)
   88:	50 98       	cbi	0x0a, 0	; 10
 	PORTD = PORTD | (1<<BUTTON);//enable internal pull-up
   8a:	58 9a       	sbi	0x0b, 0	; 11
-        _delay_ms(BLINK_DELAY);
+		_delay_ms(BLINK_DELAY);
 
-        // WRITE YOUR CODE HERE
+		// WRITE YOUR CODE HERE
 		if(bit_is_set(PIND, BUTTON))
 		{
-		PORTB = PORTB ^ (1<<LED_GREEN);
+			PORTB = PORTB ^ (1<<LED_GREEN);
   8c:	90 e2       	ldi	r25, 0x20	; 32
 	#else
 		//round up by default
@@ -118,20 +118,20 @@ int main(void)
   9a:	e1 f7       	brne	.-8      	; 0x94 <main+0x14>
   9c:	00 c0       	rjmp	.+0      	; 0x9e <main+0x1e>
   9e:	00 00       	nop
-    {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
+	{
+		// Pause several milliseconds
+		_delay_ms(BLINK_DELAY);
 
-        // WRITE YOUR CODE HERE
+		// WRITE YOUR CODE HERE
 		if(bit_is_set(PIND, BUTTON))
   a0:	48 9b       	sbis	0x09, 0	; 9
   a2:	f5 cf       	rjmp	.-22     	; 0x8e <main+0xe>
 		{
-		PORTB = PORTB ^ (1<<LED_GREEN);
+			PORTB = PORTB ^ (1<<LED_GREEN);
   a4:	85 b1       	in	r24, 0x05	; 5
   a6:	89 27       	eor	r24, r25
   a8:	85 b9       	out	0x05, r24	; 5
-		PORTC = PORTC ^ (1<<LED_GREEN_1);
+			PORTC = PORTC ^ (1<<LED_GREEN_1);
   aa:	88 b1       	in	r24, 0x08	; 8
   ac:	89 27       	eor	r24, r25
   ae:	88 b9       	out	0x08, r24	; 8
