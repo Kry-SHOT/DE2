@@ -1,5 +1,5 @@
 /*
- * gpio.c
+ * main.c
  *
  * Created: 13.10.2020 10:31:21
  * Author : krystof michal
@@ -28,25 +28,25 @@
 int main(void)
 {
     /* GREEN LED */
-    GPIO_config_output(&DDRB, LED_GREEN_1);
-    GPIO_write_low(&PORTB, LED_GREEN_1);
+    GPIO_config_output(&DDRB, LED_GREEN_1); //set pin to output
+    GPIO_write_low(&PORTB, LED_GREEN_1);	//set pin to 0
 
 	/* second LED */
-	GPIO_config_output(&DDRC, LED_GREEN_2);
-	GPIO_write_high(&PORTC, LED_GREEN_2); 
+	GPIO_config_output(&DDRC, LED_GREEN_2); //set pin to output
+	GPIO_write_high(&PORTC, LED_GREEN_2);	//set pin to 1
 	
 	/* button */
-	GPIO_config_input_pullup(&DDRD, BUTTON)
+	GPIO_config_input_pullup(&DDRD, BUTTON); //set pin to input
  
 	while (1) 
 		{ 
 		// Pause several milliseconds
 		_delay_ms(BLINK_DELAY);
 		// WRITE YOUR CODE HERE 
-		if(bit_is_set(PIND, BUTTON)) 
+		if(!GPIO_read(&PORTD, BUTTON)) 
 			{ 
-				GPIO_toggle(&DDRB, LED_GREEN_1)
-				GPIO_toggle(&DDRB, LED_GREEN_2) 
+				GPIO_toggle(&PORTB, LED_GREEN_1);
+				GPIO_toggle(&PORTC, LED_GREEN_2);
 			} 
 		}
 	// Will never reach this 
